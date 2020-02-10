@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './index.js',
@@ -8,6 +9,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js',
   },
+  devServer: {
+    port: 9000,
+    },
   module: {
     rules: [
       {
@@ -41,7 +45,10 @@ module.exports = {
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: 'style.css'
     }),
+    new CopyPlugin([
+      { from: './src/img', to: 'src/img' },
+    ]),
   ],
 };

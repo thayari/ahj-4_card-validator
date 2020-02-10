@@ -2,13 +2,12 @@ import luhnAlgorithm from './luhn';
 import paySystem from './paysystem';
 
 const form = document.querySelector('form');
-const input = form.querySelector('.cardnumber').value;
 const button = form.querySelector('.button');
 const images = document.querySelectorAll('.card');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  // button.classList.remove('green', 'red');
+  const input = form.querySelector('.cardnumber').value;
 
   const luhn = luhnAlgorithm(input);
   const system = paySystem(input);
